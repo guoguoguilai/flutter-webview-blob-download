@@ -16,7 +16,7 @@
             var formdata = new FormData();
             formdata.append("webm", videoFile); 
             var ajax = new XMLHttpRequest();
-            ajax.open("POST", "http://10.0.0.113:8080/upload");//写手机的ip地址。功能测试通过后，ip地址要换成localhost
+            ajax.open("POST", "http://10.0.0.113:8080/upload");//The IP address of your Phone. 写手机的ip地址。功能测试通过后，ip地址要换成localhost
             ajax.send(formdata); 
             }
 
@@ -41,7 +41,7 @@
             }
 
         async function doAll(blobUrl){
-            let file = await downloadBlob(blobUrl); //bloburl 格式 blob:null/73e6954e-
+            let file = await downloadBlob(blobUrl); //bloburl Format: blob:null/73e6954e-
             console.log(file);
             sendVideotoServer(file);
             }
@@ -52,7 +52,7 @@
 
         exportButton.addEventListener('click', () => {
         console.log("click button");
-        doAll("blob:http://10.0.0.138:8000/001dd7a1-af88-4299-9acb-593931055065"); //这个是unity返回的blob开头的地址。
+        doAll("blob:http://10.0.0.138:8000/001dd7a1-af88-4299-9acb-593931055065"); //The blob link of yours.
         });
     </script>
 </body>
