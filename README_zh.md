@@ -11,9 +11,6 @@
 ## 环境
 
 ```
-
-```
-
 Doctor summary (to see all details, run flutter doctor -v):
 [√] Flutter (Channel stable, 2.2.2, on Microsoft Windows [Version 10.0.16299.1087], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 30.0.3)
@@ -21,11 +18,7 @@ Doctor summary (to see all details, run flutter doctor -v):
 [√] Android Studio (version 3.5)
 [√] IntelliJ IDEA Ultimate Edition (version 2021.1)
 [√] Connected device (2 available)
-
 ```
-
-```
-
 pubspec.yaml
 
 ```
