@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="box-center">
+        <button id="export">SAVE TEST FILE</button>
+      </div>
+      <script>
+        function sendVideotoServer(videoFile){
+            var formdata = new FormData();
+            formdata.append("webm", videoFile); 
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "http://10.0.0.113:8080/upload");//写手机的ip地址。功能测试通过后，ip地址要换成localhost
+            ajax.send(formdata); 
+            }
+
+        //blob文件转化
+        function downloadBlob(src){
+            return new Promise((resolve, reject) => {
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET',src,true);
+                xhr.responseType = 'blob';
+                xhr.onload = function(e) {
+                console.log(e);
+                if (this.status == 200) {
+                    let myBlob = this.response;
+                    let files = new window.File([myBlob], myBlob.type, {type:myBlob.type})
+                    resolve(files)
+                }else{
+                    reject(false)
+                }
+                };
+            xhr.send();
+            })
+            }
+
+        async function doAll(blobUrl){
+            let file = await downloadBlob(blobUrl); //bloburl 格式 blob:null/73e6954e-
+            console.log(file);
+            sendVideotoServer(file);
+            }
+
+        /* For the example */
+        const exportButton = document.getElementById('export');
+        const jsonBlob = new Blob(['{"name": "test"}'])
+
+        exportButton.addEventListener('click', () => {
+        console.log("click button");
+        doAll("blob:http://10.0.0.138:8000/001dd7a1-af88-4299-9acb-593931055065"); //这个是unity返回的blob开头的地址。
+        });
+    </script>
+</body>
+</html>
